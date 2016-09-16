@@ -7,11 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.lukekorth.android_init.api.Api;
 
 public class BaseActivity extends AppCompatActivity {
 
     protected Toolbar mToolbar;
 
+    protected Api mApi;
     protected FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
@@ -22,6 +24,7 @@ public class BaseActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        mApi = BaseApplication.getApplication(this).getApi();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 

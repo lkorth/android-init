@@ -12,4 +12,8 @@ public class DebugTools {
     public static void watchForLeak(Fragment fragment) {
         // noop
     }
+
+    public static Interceptor getNetworkInterceptor() {
+        return null;
+    }
 }

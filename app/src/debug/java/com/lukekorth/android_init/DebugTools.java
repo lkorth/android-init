@@ -5,11 +5,14 @@ import android.app.Fragment;
 import android.os.StrictMode;
 
 import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.lukekorth.mailable_log.MailableLog;
 import com.squareup.leakcanary.RefWatcher;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import okhttp3.Interceptor;
 
 public class DebugTools implements Thread.UncaughtExceptionHandler {
 
@@ -30,10 +33,14 @@ public class DebugTools implements Thread.UncaughtExceptionHandler {
     }
 
     public static void watchForLeak(Fragment fragment) {
-        ((BaseApplication) fragment.getActivity().getApplication())
+        BaseApplication.getApplication(fragment.getActivity())
                 .getDebugTools()
                 .mRefWatcher
                 .watch(fragment);
+    }
+
+    public static Interceptor getNetworkInterceptor() {
+        return new StethoInterceptor();
     }
 
     @Override
