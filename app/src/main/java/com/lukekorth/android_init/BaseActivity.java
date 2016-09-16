@@ -6,9 +6,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 public class BaseActivity extends AppCompatActivity {
 
     protected Toolbar mToolbar;
+
+    protected FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,8 @@ public class BaseActivity extends AppCompatActivity {
         setContentView(getLayout());
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
     protected int getLayout() {
