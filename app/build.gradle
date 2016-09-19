@@ -17,6 +17,7 @@ android {
             minifyEnabled true
             proguardFile 'proguard/support-design.txt'
             proguardFile 'proguard/support-v7-appcompat.txt'
+            proguardFile 'proguard/retrofit.txt'
             proguardFile 'proguard/project.txt'
             proguardFile getDefaultProguardFile('proguard-android.txt')
             testProguardFile 'proguard/project-test.txt'
