@@ -3,6 +3,8 @@ package com.lukekorth.android_init;
 import android.app.Application;
 import android.app.Fragment;
 
+import okhttp3.Interceptor;
+
 public class DebugTools {
 
     public void setup(Application application) {
