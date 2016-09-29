@@ -26,7 +26,7 @@ android {
 }
 
 android.buildTypes.each { type ->
-    type.buildConfigField 'String', 'API_BASE_URL', '""'
+    type.buildConfigField 'String', 'API_BASE_URL', '"http://example.com"'
 }
 
 dependencies {
