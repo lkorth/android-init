@@ -20,8 +20,6 @@ public class DebugTools implements Thread.UncaughtExceptionHandler {
     private Thread.UncaughtExceptionHandler mDefaultExceptionHandler;
 
     public void setup(Application application) {
-        setStrictMode();
-
         MailableLog.init(application, true);
 
         mDefaultExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
@@ -30,6 +28,8 @@ public class DebugTools implements Thread.UncaughtExceptionHandler {
         mRefWatcher = LeakLoggerService.setupLeakCanary(application);
 
         Stetho.initializeWithDefaults(application);
+
+        setStrictMode();
     }
 
     public static void watchForLeak(Fragment fragment) {
