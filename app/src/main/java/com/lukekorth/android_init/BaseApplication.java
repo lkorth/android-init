@@ -6,6 +6,7 @@ import android.content.Context;
 import com.google.gson.GsonBuilder;
 import com.lukekorth.android_init.api.Api;
 import com.lukekorth.android_init.api.UserAgentInterceptor;
+import com.lukekorth.android_init.debug.DebugTools;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -32,10 +33,7 @@ public class BaseApplication extends Application {
         if (mApi == null) {
             OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
             okHttpBuilder.addInterceptor(new UserAgentInterceptor());
-
-            if (BuildConfig.DEBUG) {
-                okHttpBuilder.addNetworkInterceptor(DebugTools.getNetworkInterceptor());
-            }
+            mDebugTools.setNetworkInterceptor(okHttpBuilder);
 
             mApi = new Retrofit.Builder()
                     .baseUrl(BuildConfig.API_BASE_URL)

@@ -23,7 +23,6 @@ android {
             minifyEnabled true
             proguardFile 'proguard/support-design.txt'
             proguardFile 'proguard/support-v7-appcompat.txt'
-            proguardFile 'proguard/retrofit.txt'
             proguardFile 'proguard/project.txt'
             proguardFile getDefaultProguardFile('proguard-android.txt')
             testProguardFile 'proguard/project-test.txt'
@@ -40,7 +39,6 @@ dependencies {
     compile 'com.android.support:design:25.0.0'
     compile 'com.android.support:cardview-v7:25.0.0'
 
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
     compile 'com.google.firebase:firebase-core:9.6.1'
@@ -50,10 +48,8 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 
-    debugCompile 'com.facebook.stetho:stetho:1.4.1'
-    debugCompile 'com.facebook.stetho:stetho-okhttp3:1.4.1'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4'
-    debugCompile 'com.lukekorth:mailable_log:0.1.4'
+    debugCompile project(':debug')
+    releaseCompile project(':release')
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

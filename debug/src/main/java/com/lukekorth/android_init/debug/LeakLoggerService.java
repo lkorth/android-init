@@ -1,4 +1,4 @@
-package com.lukekorth.android_init;
+package com.lukekorth.android_init.debug;
 
 import android.app.Application;
 

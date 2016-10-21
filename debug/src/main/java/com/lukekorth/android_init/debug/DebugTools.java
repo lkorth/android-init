@@ -1,4 +1,4 @@
-package com.lukekorth.android_init;
+package com.lukekorth.android_init.debug;
 
 import android.app.Application;
 import android.app.Fragment;
@@ -12,13 +12,14 @@ import com.squareup.leakcanary.RefWatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
 
-public class DebugTools implements Thread.UncaughtExceptionHandler {
+public class DebugTools implements DebugToolsInterface, Thread.UncaughtExceptionHandler {
 
     private RefWatcher mRefWatcher;
     private Thread.UncaughtExceptionHandler mDefaultExceptionHandler;
 
+    @Override
     public void setup(Application application) {
         MailableLog.init(application, true);
 
@@ -32,15 +33,14 @@ public class DebugTools implements Thread.UncaughtExceptionHandler {
         setStrictMode();
     }
 
-    public static void watchForLeak(Fragment fragment) {
-        BaseApplication.getApplication(fragment.getActivity())
-                .getDebugTools()
-                .mRefWatcher
-                .watch(fragment);
+    @Override
+    public void watchForLeak(Fragment fragment) {
+        mRefWatcher.watch(fragment);
     }
 
-    public static Interceptor getNetworkInterceptor() {
-        return new StethoInterceptor();
+    @Override
+    public void setNetworkInterceptor(OkHttpClient.Builder okHttpBuilder) {
+        okHttpBuilder.addNetworkInterceptor(new StethoInterceptor());
     }
 
     @Override

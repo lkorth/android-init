@@ -22,6 +22,6 @@ public class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        DebugTools.watchForLeak(this);
+        BaseApplication.getApplication(getActivity()).getDebugTools().watchForLeak(this);
     }
 }
